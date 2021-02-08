@@ -18,9 +18,9 @@ class BillingService {
 
       val bill = afterPromotionApplied.foldLeft(0d)((acc,c) => acc + charges(c.callDuration))
 
-      (id, bill)
+      CustomerBill(id, updateCurrency(bill))
 
-    }.map(cust => CustomerBill(cust._1, updateCurrency(cust._2))).toList
+    }.toList
   }
 
   def charges(time:Int): Double ={
